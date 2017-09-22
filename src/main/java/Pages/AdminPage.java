@@ -10,25 +10,32 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class AdminPage {
     // Private
     private WebDriver _driver;
-    private static final Map<String, String> menuLinks;
-    static{
-        Map menuLinkIds = new HashMap<String,String>();
-        menuLinkIds.put("Заказы","subtab-AdminParentOrders");
-        menuLinkIds.put("Каталог","subtab-AdminCatalog");
-        menuLinkIds.put("Клиенты","subtab-AdminParentCustomer");
-        menuLinkIds.put("Служба поддержки","subtab-AdminParentCustomerThreads");
-        menuLinkIds.put("Статистика","subtab-AdminStats");
-        menuLinkIds.put("Modules","subtab-AdminParentModulesSf");
-        menuLinkIds.put("Design","subtab-AdminParentThemes");
-        menuLinkIds.put("Доставка","subtab-AdminParentShipping");
-        menuLinkIds.put("Способ оплаты","subtab-AdminParentPayment");
-        menuLinkIds.put("International","subtab-AdminInternational");
-        menuLinkIds.put("Shop Parameters","subtab-ShopParameters");
-        menuLinkIds.put("Конфигурация","subtab-AdminAdvancedParameters");
-        menuLinks = Collections.unmodifiableMap(menuLinkIds);
+
+    public enum MainMenuLinks{
+        Orders("subtab-AdminParentOrders"),
+        Catalog("subtab-AdminCatalog"),
+        Customer("subtab-AdminParentCustomer"),
+        CustomerSupport("subtab-AdminParentCustomerThreads"),
+        Statistics("subtab-AdminStats"),
+        Modules("subtab-AdminParentModulesSf"),
+        Design("subtab-AdminParentThemes"),
+        Shipping("subtab-AdminParentShipping"),
+        PaymentMethod("subtab-AdminParentPayment"),
+        International("subtab-AdminInternational"),
+        ShopParameters("subtab-ShopParameters"),
+        Configuration("subtab-AdminAdvancedParameters");
+
+        private String linkName;
+
+        MainMenuLinks(String menuName){this.linkName = menuName;}
+
+        public String getLinkName() {
+            return linkName;
+        }
     }
 
     //Constructor
@@ -49,14 +56,9 @@ public class AdminPage {
         _logoutLink.click();
     }
 
-    public void ClickMenuLink(String linkName){
+    public void ClickMenuLink(MainMenuLinks link){
 
-        _driver.findElement(By.id((String)menuLinks.get(linkName))).click();
+        _driver.findElement(By.id(link.linkName)).click();
     }
-
-
-
-
-
 
 }
