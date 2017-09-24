@@ -1,39 +1,10 @@
 import Pages.AdminPage;
 import Pages.LoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.PriorityQueue;
-import java.util.concurrent.TimeUnit;
-
-//@RunWith(JUnitParamsRunner.class)
-public class WhenUserLoginToSite {
-
-    //fields
-    private LoginPage _loginPage;
-    private AdminPage _adminPage;
-    private WebDriver _driver;
-    private String driverPath = "C:\\Users\\Obozhko\\.nuget\\packages\\selenium.chrome.webdriver\\2.31.0\\driver\\chromedriver.exe";
-    private String _adminLogin = "webinar.test@gmail.com";
-    private String _adminPassword = "Xcg7299bnSmMuRLp9ITw";
-
-    //Before, After
-    @BeforeMethod
-    public void Start(){
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        _driver = new ChromeDriver();
-        _driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-        _driver.manage().window().maximize();
-    }
-    @AfterMethod
-    public void End(){
-        _driver.quit();
-    }
+public class WhenUserLoginToSite extends BaseTest {
 
     //Tests
     @Test
