@@ -1,10 +1,11 @@
 import Pages.CategoryPage;
 import Pages.LoginPage;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class WhenUserCreateCategory extends BaseTest {
+import static Pages.AdminPage.MainMenuLinks.Catalog;
+
+public class taskLecture_3 extends BaseTest {
 
     @BeforeMethod
     public void LoginToSite(){
@@ -13,9 +14,7 @@ public class WhenUserCreateCategory extends BaseTest {
     }
 
     @Test
-    public void draftTest(){
-        CategoryPage page = new CategoryPage(_driver);
-        page.goToCatalogSubMenu("категории");
-        System.out.println(_driver.getTitle());
+    public void draftTest() throws InterruptedException {
+        _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class);
     }
 }

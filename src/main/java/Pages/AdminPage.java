@@ -1,5 +1,4 @@
 package Pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.swing.*;
+import java.util.List;
 
 
 public class AdminPage {
@@ -43,6 +42,10 @@ public class AdminPage {
         PageFactory.initElements(_driver, this);
     }
 
+    public AdminPage(){}
+
+    //public AdminPage(){}
+
     //Elements
     @FindBy(className="employee_avatar_small")
     private WebElement _userIcon;
@@ -55,12 +58,31 @@ public class AdminPage {
         _logoutLink.click();
     }
 
-    public void ClickMenuLink(MainMenuLinks link){
+    public void clickMenuLink(MainMenuLinks link){
 
         _driver.findElement(By.id(link.linkName)).click();
     }
 
-    public void showSubMenu(MainMenuLinks link){
+    public Object ClickMenuLink(MainMenuLinks mainLink, Class pageClass){
+        _driver.findElement(By.id(mainLink.linkName)).click();
+        return PageFactory.initElements(_driver, pageClass);
+    }
+
+    public Object goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class subMenuPage){
+        showSubMenu(mainMenuName);
+        List<WebElement> subMenuLinks = _driver.findElement(By.id(mainMenuName.linkName)).findElements(By.xpath(".//li/a"));
+
+        for (WebElement item:subMenuLinks
+                ) {
+            if (item.getText().equals(subMenuName)){
+                item.click();
+                break;
+            }
+        }
+        return PageFactory.initElements(_driver, subMenuPage);
+    }
+
+    private void showSubMenu(MainMenuLinks link){
 
         Actions action = new Actions(_driver);
         action.moveToElement(_driver.findElement(By.id(link.linkName))).perform();

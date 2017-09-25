@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class WhenUserLoginToSite extends BaseTest {
+public class taskLecture_2 extends BaseTest {
 
     //Tests
     @Test
@@ -39,7 +39,7 @@ public class WhenUserLoginToSite extends BaseTest {
                 .Login(_adminLogin, _adminPassword);
 
         //Actions
-        _adminPage.ClickMenuLink(linkName);
+        _adminPage.clickMenuLink(linkName);
         System.out.println(_driver.getTitle());
         _driver.navigate().refresh();
 
