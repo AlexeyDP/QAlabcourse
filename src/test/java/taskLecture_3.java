@@ -16,5 +16,6 @@ public class taskLecture_3 extends BaseTest {
     @Test
     public void draftTest() throws InterruptedException {
         _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class);
+        
     }
 }

@@ -12,13 +12,8 @@ public class CategoryPage extends AdminPage{
         private String linkName;
 
         FilterOption(String filterName){this.linkName = filterName;}
-
     }
 
-    public enum FilterSorting{
-        UP,
-        DOWN;
-    }
 
     @FindBy(id="page-header-desc-category-new_category")
     private WebElement _addNewCategory;
@@ -27,7 +22,13 @@ public class CategoryPage extends AdminPage{
     private WebElement _filterHeader;
 
 
-    public void sortCategory(FilterOption by, FilterSorting order){}
+    public CategoryPage sortAscending(FilterOption option){
+        return this;
+    }
+
+    public CategoryPage sortDescending(FilterOption option){
+        return this;
+    }
 
 
 

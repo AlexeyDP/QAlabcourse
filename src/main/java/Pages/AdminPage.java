@@ -63,12 +63,12 @@ public class AdminPage {
         _driver.findElement(By.id(link.linkName)).click();
     }
 
-    public Object ClickMenuLink(MainMenuLinks mainLink, Class pageClass){
+    public <T extends AdminPage>T ClickMenuLink(MainMenuLinks mainLink, Class<T> pageClass){
         _driver.findElement(By.id(mainLink.linkName)).click();
         return PageFactory.initElements(_driver, pageClass);
     }
 
-    public Object goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class subMenuPage){
+    public <T extends AdminPage>T goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class<T> subMenuPage ){
         showSubMenu(mainMenuName);
         List<WebElement> subMenuLinks = _driver.findElement(By.id(mainMenuName.linkName)).findElements(By.xpath(".//li/a"));
 
@@ -79,7 +79,7 @@ public class AdminPage {
                 break;
             }
         }
-        return PageFactory.initElements(_driver, subMenuPage);
+        return PageFactory.initElements(_driver,subMenuPage);
     }
 
     private void showSubMenu(MainMenuLinks link){
