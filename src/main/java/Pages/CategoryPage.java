@@ -14,14 +14,22 @@ public class CategoryPage extends AdminPage{
         FilterOption(String filterName){this.linkName = filterName;}
     }
 
-
+    //Elements
     @FindBy(id="page-header-desc-category-new_category")
-    private WebElement _addNewCategory;
+    private WebElement _addNewCategoryButton;
 
     @FindBy(className ="nodrag nodrop")
     private WebElement _filterHeader;
 
+    @FindBy(id="name_1")
+    private WebElement _categoryNameInput;
 
+    @FindBy(id="category_form_submit_btn")
+    private WebElement _saveButton;
+    @FindBy(css = "div.alert.alert-success")
+    private WebElement _alertSuccess;
+
+    //Methods
     public CategoryPage sortAscending(FilterOption option){
         return this;
     }
@@ -30,7 +38,12 @@ public class CategoryPage extends AdminPage{
         return this;
     }
 
-
+    public CategoryPage addNewCategory(String categoryName)  {
+        _addNewCategoryButton.click();
+        _categoryNameInput.sendKeys(categoryName);
+        _saveButton.click();
+        return this;
+    }
 
 }
 

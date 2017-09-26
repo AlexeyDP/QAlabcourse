@@ -1,5 +1,6 @@
 import Pages.CategoryPage;
 import Pages.LoginPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,8 +15,8 @@ public class taskLecture_3 extends BaseTest {
     }
 
     @Test
-    public void draftTest() throws InterruptedException {
-        _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class);
-        
+    public void draftTest() {
+        _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class)
+                .addNewCategory("someName");
     }
 }
