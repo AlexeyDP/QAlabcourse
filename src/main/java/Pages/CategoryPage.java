@@ -1,9 +1,15 @@
 package Pages;
 
+import Utils.WaitHelper;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CategoryPage extends AdminPage{
+    public CategoryPage(WebDriver driver) {super(driver);
+    }
+
     public enum FilterOption{
         ID("ID"),
         Name("Имя"),
@@ -26,15 +32,21 @@ public class CategoryPage extends AdminPage{
 
     @FindBy(id="category_form_submit_btn")
     private WebElement _saveButton;
-    @FindBy(css = "div.alert.alert-success")
-    private WebElement _alertSuccess;
+//    @FindBy(css = "div.alert.alert-success")
+//    private WebElement _alertSuccess;
+
+    private WebElement _filterOption(FilterOption option){
+        return _driver.findElement(By.xpath(String.format("//th/span[contains(text(),'%1$s')]",option.linkName)));
+    }
 
     //Methods
     public CategoryPage sortAscending(FilterOption option){
+        _filterOption(option).findElement(By.xpath("./a[2]")).click();
         return this;
     }
 
     public CategoryPage sortDescending(FilterOption option){
+        _filterOption(option).findElement(By.xpath("./a[1]")).click();
         return this;
     }
 

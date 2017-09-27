@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static Pages.AdminPage.MainMenuLinks.Catalog;
+import static Pages.CategoryPage.*;
 
 public class taskLecture_3 extends BaseTest {
 
@@ -17,6 +18,7 @@ public class taskLecture_3 extends BaseTest {
     @Test
     public void draftTest() {
         _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class)
-                .addNewCategory("someName");
+                .addNewCategory("someName")
+                .sortAscending(FilterOption.Name);
     }
 }
