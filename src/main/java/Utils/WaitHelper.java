@@ -14,40 +14,15 @@ public class WaitHelper {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
+    public  static void WaitForVisible(WebDriver driver, WebElement element, int timeOut){
+        WebDriverWait wait = new WebDriverWait(driver, timeOut);
+         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     public static WebElement WaitForClickable(WebDriver driver, By by){
         WebDriverWait wait = new WebDriverWait(driver, 3);
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-
-    public static boolean waitForJSandJQueryToLoad(WebDriver driver) {
-
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        // wait for jQuery to load
-        ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
-
-            public Boolean apply(WebDriver driver) {
-                try {
-                    return ((Long)((JavascriptExecutor)driver).executeScript("return jQuery.active") == 0);
-                }
-                catch (Exception e) {
-                    // no jQuery present
-                    return true;
-                }
-            }
-        };
-
-        // wait for Javascript to load
-        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
-
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor)driver).executeScript("return document.readyState")
-                        .toString().equals("complete");
-            }
-        };
-
-        return wait.until(jQueryLoad) && wait.until(jsLoad);
-    }
 
 }
