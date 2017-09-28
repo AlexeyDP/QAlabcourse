@@ -1,6 +1,8 @@
+
 import Pages.AdminPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,6 +14,7 @@ public class BaseTest {
     protected String _adminLogin = "webinar.test@gmail.com";
     protected String _adminPassword = "Xcg7299bnSmMuRLp9ITw";
     protected AdminPage _adminPage;
+
 
     @BeforeMethod
     public void Start(){

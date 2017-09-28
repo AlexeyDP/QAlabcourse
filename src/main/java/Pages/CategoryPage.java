@@ -1,9 +1,9 @@
 package Pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
@@ -60,6 +60,7 @@ public class CategoryPage extends AdminPage{
     }
 
     //Methods
+    @Step
     public CategoryPage sortAscending(CategoryListField field){
         _filterOption(field).findElement(By.xpath(".//a[2]")).click();
         return this;
