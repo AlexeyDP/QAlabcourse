@@ -72,7 +72,7 @@ public class AdminPage {
         return PageFactory.initElements(_driver, pageClass);
     }
 
-    public <T extends AdminPage>T goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class<T> subMenuPage ) throws InterruptedException {
+    public <T extends AdminPage>T goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class<T> subMenuPage )  {
         showSubMenu(mainMenuName);
         List<WebElement> subMenuLinks =  _driver.findElement(By.id(mainMenuName.linkName)).findElements(By.xpath(".//li/a"));
 
@@ -87,8 +87,8 @@ public class AdminPage {
         return PageFactory.initElements(_driver,subMenuPage);
     }
 
-    private void showSubMenu(MainMenuLinks link) throws InterruptedException {
-        Thread.sleep(3000);
+    private void showSubMenu(MainMenuLinks link) {
+        WaitAjax(_driver);
         Actions action = new Actions(_driver);
         action.moveToElement(_driver.findElement(By.id(link.linkName))).perform();
     }

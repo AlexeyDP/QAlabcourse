@@ -51,7 +51,7 @@ public class taskLecture_3 extends BaseTest {
     }
 
     @Test(dataProvider = "addCategoryTest")
-    public void CategoryShouldBeInCategoryList(CategoryListField sortByFieldName, String categoryName) throws InterruptedException {
+    public void CategoryShouldBeInCategoryList(CategoryListField sortByFieldName, String categoryName)  {
        //Actions
         boolean isCategoryInList =  _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class)
                 .addNewCategory(categoryName)
