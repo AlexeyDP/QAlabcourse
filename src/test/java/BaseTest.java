@@ -9,8 +9,12 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    protected WebDriver _driver;
-    private String driverPath = "C:\\Users\\Obozhko\\IdeaProjects\\lecture_2\\chromedriver.exe";
+    //Private
+    private WebDriver _webDriver;
+    private String driverPath = "C:\\Users\\1\\IdeaProjects\\QAlabcourse\\chromedriver.exe";
+
+    //Protected
+    protected EventFiringWebDriver _driver;
     protected String _adminLogin = "webinar.test@gmail.com";
     protected String _adminPassword = "Xcg7299bnSmMuRLp9ITw";
     protected AdminPage _adminPage;
@@ -18,8 +22,16 @@ public class BaseTest {
 
     @BeforeMethod
     public void Start(){
+        //Create driver instance
         System.setProperty("webdriver.chrome.driver", driverPath);
-        _driver = new ChromeDriver();
+        _webDriver = new ChromeDriver();
+
+        //Create logger instance
+        _driver = new EventFiringWebDriver(_webDriver);
+        WebDriverLogger loggerHandler = new WebDriverLogger();
+        _driver.register(loggerHandler);
+
+        //Configure _driver
         _driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
         _driver.manage().window().maximize();
     }

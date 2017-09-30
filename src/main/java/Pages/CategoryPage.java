@@ -1,16 +1,15 @@
 package Pages;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.List;
 
 import static Utils.WaitHelper.WaitForVisible;
 
 public class CategoryPage extends AdminPage{
-    public CategoryPage(WebDriver driver) {super(driver);
+    public CategoryPage(EventFiringWebDriver driver) {super(driver);
     }
 
     public enum CategoryListField{
@@ -48,7 +47,8 @@ public class CategoryPage extends AdminPage{
         return _driver.findElement(By.cssSelector(String.format("#table-category > thead >tr> th:nth-child(%1$s)",field.fieldNumber)));
     }
 
-    /* search in category list web element which has 'value' in field 'byField' and return true if found */
+
+
     public boolean isCategoryInList(CategoryListField byField, String value){
         for (WebElement row: _categoryList
              ) {
@@ -60,7 +60,7 @@ public class CategoryPage extends AdminPage{
     }
 
     //Methods
-    @Step
+
     public CategoryPage sortAscending(CategoryListField field){
         _filterOption(field).findElement(By.xpath(".//a[2]")).click();
         return this;

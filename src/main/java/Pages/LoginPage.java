@@ -1,19 +1,17 @@
 package Pages;
 
-import Utils.WaitHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class LoginPage {
     // Private
-    private WebDriver _driver;
+    private EventFiringWebDriver _driver;
     private String siteUrl = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
 
     //Constructor
-    public  LoginPage(WebDriver driver){
+    public  LoginPage(EventFiringWebDriver driver){
         this._driver = driver;
         _driver.navigate().to(siteUrl);
         PageFactory.initElements(_driver, this);
@@ -30,6 +28,7 @@ public class LoginPage {
      private WebElement _submitButton;
 
     //Methods
+
      public AdminPage Login(String userEmail, String userPassword){
          _emailInput.sendKeys(userEmail);
          _paswwordInput.sendKeys(userPassword);
