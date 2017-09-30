@@ -1,17 +1,20 @@
 package Pages;
+import Utils.WaitHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.List;
+
+import static Utils.WaitHelper.*;
 
 
 public class AdminPage {
     // Private
-    protected EventFiringWebDriver _driver;
+    protected WebDriver _driver;
 
     public enum MainMenuLinks{
         Orders("subtab-AdminParentOrders"),
@@ -37,9 +40,10 @@ public class AdminPage {
     }
 
     //Constructor
-    public AdminPage(EventFiringWebDriver driver){
+    public AdminPage(WebDriver driver)  {
         this._driver = driver;
         PageFactory.initElements(_driver, this);
+
     }
 
     public AdminPage(){}
@@ -68,9 +72,9 @@ public class AdminPage {
         return PageFactory.initElements(_driver, pageClass);
     }
 
-    public <T extends AdminPage>T goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class<T> subMenuPage ){
+    public <T extends AdminPage>T goToSubMenuPage(MainMenuLinks mainMenuName, String subMenuName, Class<T> subMenuPage ) throws InterruptedException {
         showSubMenu(mainMenuName);
-        List<WebElement> subMenuLinks = _driver.findElement(By.id(mainMenuName.linkName)).findElements(By.xpath(".//li/a"));
+        List<WebElement> subMenuLinks =  _driver.findElement(By.id(mainMenuName.linkName)).findElements(By.xpath(".//li/a"));
 
         for (WebElement item:subMenuLinks
                 ) {
@@ -79,11 +83,12 @@ public class AdminPage {
                 break;
             }
         }
+
         return PageFactory.initElements(_driver,subMenuPage);
     }
 
-    private void showSubMenu(MainMenuLinks link){
-
+    private void showSubMenu(MainMenuLinks link) throws InterruptedException {
+        Thread.sleep(3000);
         Actions action = new Actions(_driver);
         action.moveToElement(_driver.findElement(By.id(link.linkName))).perform();
     }

@@ -1,15 +1,15 @@
 package Pages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
 import java.util.List;
 
 import static Utils.WaitHelper.WaitForVisible;
 
 public class CategoryPage extends AdminPage{
-    public CategoryPage(EventFiringWebDriver driver) {super(driver);
+    public CategoryPage(WebDriver driver) {super(driver);
     }
 
     public enum CategoryListField{

@@ -51,12 +51,12 @@ public class taskLecture_3 extends BaseTest {
     }
 
     @Test(dataProvider = "addCategoryTest")
-    public void CategoryShouldBeInCategoryList(CategoryListField sortByFieldName, String categoryName) {
+    public void CategoryShouldBeInCategoryList(CategoryListField sortByFieldName, String categoryName) throws InterruptedException {
        //Actions
         boolean isCategoryInList =  _adminPage.goToSubMenuPage(Catalog, "категории", CategoryPage.class)
                 .addNewCategory(categoryName)
                 .sortAscending(sortByFieldName)
-               .isCategoryInList(sortByFieldName, categoryName);
+                .isCategoryInList(sortByFieldName, categoryName);
 
         //Assertions
         Assert.assertTrue(isCategoryInList);

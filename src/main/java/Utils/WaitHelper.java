@@ -10,20 +10,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitHelper {
-    public  static WebElement WaitForVisible(EventFiringWebDriver driver, By by, int timeOut){
+    public  static WebElement WaitForVisible(WebDriver driver, By by, int timeOut){
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    public  static void WaitForVisible(EventFiringWebDriver driver, WebElement element, int timeOut){
+    public  static void WaitForVisible(WebDriver driver, WebElement element, int timeOut){
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
          wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static WebElement WaitForClickable(EventFiringWebDriver driver, By by){
+    public static WebElement WaitForClickable(WebDriver driver, By by){
         WebDriverWait wait = new WebDriverWait(driver, 3);
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
+
 
 
 }
