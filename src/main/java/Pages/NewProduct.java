@@ -1,9 +1,13 @@
 package Pages;
 
+import Utils.WaitHelper;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import static Utils.WaitHelper.*;
 import static java.lang.String.*;
 
 public class NewProduct extends ProductsPage{
@@ -21,11 +25,8 @@ public class NewProduct extends ProductsPage{
     @FindBy(id="form_step1_price_shortcut")
     private WebElement _productPriceInput;
 
-    @FindBy(css = "button.btn.btn-primary.js-btn-save")
+    @FindBy(id="submit")
     private WebElement _saveProductButton;
-
-    @FindBy(id="form_step1_active")
-    private WebElement _switchToActiveToogleButton;
 
     //Setters
     public NewProduct setProductName(String name){
@@ -47,7 +48,9 @@ public class NewProduct extends ProductsPage{
     }
 
     public NewProduct activateProduct(){
-        _switchToActiveToogleButton.click();
+        Actions actions = new Actions(_driver);
+        actions.sendKeys(Keys.chord(Keys.CONTROL, "O")).perform();
+        WaitAjax(_driver);
         return this;
     }
 }

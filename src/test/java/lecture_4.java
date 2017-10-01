@@ -46,7 +46,7 @@ public class lecture_4 extends BaseTest {
     //draft, does not work yet
     @Test
     public void UserShouldBeAbleFillNewProductFormData(){
-        _adminPage.goToSubMenuPage(AdminPage.MainMenuLinks.Catalog, " товары", ProductsPage.class)
+        _adminPage.goToSubMenuPage(AdminPage.MainMenuLinks.Catalog, "товары", ProductsPage.class)
                 .goToAddProductForm()
                 .setProductName("SomeName")
                 .setProductQuantity(1)

@@ -42,8 +42,6 @@ public class AdminPage {
     //Constructor
     public AdminPage(WebDriver driver)  {
         this._driver = driver;
-        PageFactory.initElements(_driver, this);
-
     }
 
     public AdminPage(){}

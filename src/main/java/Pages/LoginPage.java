@@ -34,6 +34,6 @@ public class LoginPage {
          _paswwordInput.sendKeys(userPassword);
          _submitButton.click();
 
-         return new AdminPage(_driver);
+         return PageFactory.initElements(_driver, AdminPage.class);
      }
 }
