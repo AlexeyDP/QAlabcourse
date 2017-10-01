@@ -28,6 +28,12 @@ public class NewProduct extends ProductsPage{
     @FindBy(id="submit")
     private WebElement _saveProductButton;
 
+    @FindBy(id="growls")
+    private WebElement _alertMessage;
+
+    @FindBy(css = "#growls > div > div.growl-close")
+    private WebElement __closeMessage;
+
     //Setters
     public NewProduct setProductName(String name){
         _productNameInput.sendKeys(name);
@@ -51,6 +57,12 @@ public class NewProduct extends ProductsPage{
         Actions actions = new Actions(_driver);
         actions.sendKeys(Keys.chord(Keys.CONTROL, "O")).perform();
         WaitAjax(_driver);
+        return this;
+    }
+
+    public NewProduct closeNotificatoionMessage(){
+        WaitHelper.WaitForVisible(_driver, _alertMessage, 3);
+        (__closeMessage).click();
         return this;
     }
 }

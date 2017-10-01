@@ -1,8 +1,10 @@
 import Pages.AdminPage;
 import Pages.LoginPage;
 import Pages.ProductsPage;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.apache.commons.lang.RandomStringUtils;
+import org.testng.annotations.*;
+
+import java.util.Random;
 
 public class lecture_4 extends BaseTest {
     /*
@@ -35,23 +37,35 @@ public class lecture_4 extends BaseTest {
         http://reportng.uncommons.org/ и следующей инструкцией:
         https://solidsoft.wordpress.com/2011/01/23/better-looking-html-test-reports-for-testng-withreportng-maven-guide/
      */
+    private int _price;
+    private int _quantity;
+    private String _name;
+
 
     @BeforeMethod
     public void LoginToSite(){
         _adminPage = new LoginPage(_driver)
                 .Login(_adminLogin, _adminPassword);
 
+        _price = new Random().nextInt(100)+1;
+        _quantity = new Random().nextInt(100)+1;
+        _name = RandomStringUtils.randomAlphabetic(10);
     }
 
-    //draft, does not work yet
     @Test
     public void UserShouldBeAbleFillNewProductFormData(){
         _adminPage.goToSubMenuPage(AdminPage.MainMenuLinks.Catalog, "товары", ProductsPage.class)
                 .goToAddProductForm()
-                .setProductName("SomeName")
-                .setProductQuantity(1)
-                .setProductPrice(100)
+                .setProductName(_name)
+                .setProductQuantity(_quantity)
+                .setProductPrice(_price)
                 .saveProduct()
-                .activateProduct();
+                .activateProduct()
+                .closeNotificatoionMessage();
+    }
+
+    @Test
+    public void CreatedProductShouldBeDisplayedInProductsList(){
+
     }
 }
