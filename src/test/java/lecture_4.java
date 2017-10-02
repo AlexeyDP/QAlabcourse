@@ -2,6 +2,7 @@ import Pages.AdminPage;
 import Pages.LoginPage;
 import Pages.ProductsPage;
 import org.apache.commons.lang.RandomStringUtils;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Random;
@@ -44,8 +45,9 @@ public class lecture_4 extends BaseTest {
 
     @BeforeMethod
     public void LoginToSite(){
-        _adminPage = new LoginPage(_driver)
-                .Login(_adminLogin, _adminPassword);
+        _prodPage = new LoginPage(_driver)
+                .Login(_adminLogin, _adminPassword)
+                .goToSubMenuPage(AdminPage.MainMenuLinks.Catalog, "товары", ProductsPage.class);
 
         _price = new Random().nextInt(100)+1;
         _quantity = new Random().nextInt(100)+1;
@@ -54,8 +56,7 @@ public class lecture_4 extends BaseTest {
 
     @Test
     public void UserShouldBeAbleFillNewProductFormData(){
-        _adminPage.goToSubMenuPage(AdminPage.MainMenuLinks.Catalog, "товары", ProductsPage.class)
-                .goToAddProductForm()
+        _prodPage.goToAddProductForm()
                 .setProductName(_name)
                 .setProductQuantity(_quantity)
                 .setProductPrice(_price)
@@ -65,7 +66,19 @@ public class lecture_4 extends BaseTest {
     }
 
     @Test
-    public void CreatedProductShouldBeDisplayedInProductsList(){
+    public void CreatedProductShouldBeDisplayedInProductsList() throws Exception {
+        _prodPage.goToAddProductForm()
+                .fillAddProductForm(_name, _quantity, _price)
+                .goToCatalog();
+
+        Assert.assertTrue(_prodPage.isProdInCatalog(_name), "Product not found in catalog");
+
+        //does not work yet
+        _productFormPage =_prodPage._openProductDetails(_name);
+
+        Assert.assertEquals(_productFormPage.getProductName(), _name);
+        Assert.assertEquals(_productFormPage.getProductQnt(), _quantity);
+        Assert.assertEquals(_productFormPage.getProductPrice(), _price);
 
     }
 }

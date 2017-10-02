@@ -1,5 +1,7 @@
 
 import Pages.AdminPage;
+import Pages.NewProduct;
+import Pages.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -17,6 +19,8 @@ public class BaseTest {
     protected String _adminLogin = "webinar.test@gmail.com";
     protected String _adminPassword = "Xcg7299bnSmMuRLp9ITw";
     protected AdminPage _adminPage;
+    protected ProductsPage _prodPage;
+    protected NewProduct _productFormPage;
 
 
     @BeforeMethod

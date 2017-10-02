@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import static Utils.WaitHelper.*;
 import static java.lang.String.*;
@@ -53,9 +54,22 @@ public class NewProduct extends ProductsPage{
         return this;
     }
 
+    //Getters
+    public String getProductName(){
+       return  _productNameInput.getText();
+    }
+    public String getProductPrice(){
+        return _productPriceInput.getText();
+    }
+
+    public String getProductQnt(){
+        return _productQuantityInput.getText();
+    }
+
+    //Methods
     public NewProduct activateProduct(){
         Actions actions = new Actions(_driver);
-        actions.sendKeys(Keys.chord(Keys.CONTROL, "O")).perform();
+        actions.sendKeys(Keys.chord(Keys.CONTROL, "o")).perform();
         WaitAjax(_driver);
         return this;
     }
@@ -64,5 +78,22 @@ public class NewProduct extends ProductsPage{
         WaitHelper.WaitForVisible(_driver, _alertMessage, 3);
         (__closeMessage).click();
         return this;
+    }
+
+    public NewProduct fillAddProductForm(String prodName, int prodQnt, int prodPrice){
+         setProductName(prodName)
+        .setProductQuantity(prodQnt)
+        .setProductPrice(prodPrice)
+        .saveProduct()
+        .activateProduct()
+        .closeNotificatoionMessage();
+        return this;
+    }
+
+    public ProductsPage goToCatalog(){
+        Actions actions = new Actions(_driver);
+        actions.sendKeys(Keys.chord(Keys.CONTROL, "q")).perform();
+        WaitAjax(_driver);
+        return PageFactory.initElements(_driver, ProductsPage.class);
     }
 }
