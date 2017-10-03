@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static java.lang.String.*;
 
-public class lecture_4 extends BaseTest {
+public class taskLecture_4 extends BaseTest {
     /*
             Часть А. Создание продукта:
         1. Войти в Админ Панель.
@@ -75,7 +75,6 @@ public class lecture_4 extends BaseTest {
 
         Assert.assertTrue(_prodPage.isProdInCatalog(_name), "Product not found in catalog");
 
-        //does not work yet
         _productFormPage =_prodPage._openProductDetails(_name);
 
         Assert.assertEquals(_productFormPage.getProductName(), _name);
