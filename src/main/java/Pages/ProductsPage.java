@@ -15,7 +15,7 @@ public class ProductsPage extends AdminPage {
     //Constructor
     public ProductsPage(WebDriver driver){super(driver);}
 
-    private By _prodNameRowInListXpath = By.xpath("./td[3]");
+    private By _prodNameRowInListXpath = By.xpath("./td[3]/a");
     //Elements
     @FindBy(id="page-header-desc-configuration-add")
     private WebElement _addProductButton;

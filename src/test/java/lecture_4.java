@@ -7,6 +7,8 @@ import org.testng.annotations.*;
 
 import java.util.Random;
 
+import static java.lang.String.*;
+
 public class lecture_4 extends BaseTest {
     /*
             Часть А. Создание продукта:

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static Utils.WaitHelper.*;
+import static java.lang.Integer.parseInt;
 import static java.lang.String.*;
 
 public class NewProduct extends ProductsPage{
@@ -37,14 +38,17 @@ public class NewProduct extends ProductsPage{
 
     //Setters
     public NewProduct setProductName(String name){
+        _productNameInput.clear();
         _productNameInput.sendKeys(name);
         return this;
     }
     public NewProduct setProductQuantity(int quantity){
+        _productQuantityInput.clear();
         _productQuantityInput.sendKeys(valueOf(quantity));
         return this;
     }
     public NewProduct setProductPrice(int price){
+        _productPriceInput.clear();
         _productPriceInput.sendKeys(valueOf(price));
         return this;
     }
@@ -56,14 +60,14 @@ public class NewProduct extends ProductsPage{
 
     //Getters
     public String getProductName(){
-       return  _productNameInput.getText();
+       return  _productNameInput.getAttribute("value");
     }
-    public String getProductPrice(){
-        return _productPriceInput.getText();
+    public int getProductPrice(){
+        return parseInt(_productPriceInput.getAttribute("value").split(",")[0]);
     }
 
-    public String getProductQnt(){
-        return _productQuantityInput.getText();
+    public int getProductQnt(){
+        return parseInt(_productQuantityInput.getAttribute("value"));
     }
 
     //Methods
