@@ -8,11 +8,10 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    //Private
-    private String driverPath = "C:\\Users\\1\\IdeaProjects\\QAlabcourse\\chromedriver.exe";
 
     //Protected
     protected WebDriver _driver;
@@ -23,10 +22,12 @@ public class BaseTest {
     protected NewProduct _productFormPage;
 
 
+
     @BeforeMethod
     public void Start(){
         //Create driver instance
-        System.setProperty("webdriver.chrome.driver", driverPath);
+        System.setProperty("webdriver.chrome.driver",
+                new File(BaseTest.class.getResource("/chromedriver.exe").getFile()).getPath());
         _driver = new ChromeDriver();
 
         //Configure _driver

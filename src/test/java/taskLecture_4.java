@@ -4,6 +4,7 @@ import Pages.ProductsPage;
 import org.apache.commons.lang.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Random;
 
@@ -43,6 +44,7 @@ public class taskLecture_4 extends BaseTest {
     private int _price;
     private int _quantity;
     private String _name;
+    private SoftAssert _softAssert;
 
 
     @BeforeMethod
@@ -54,6 +56,7 @@ public class taskLecture_4 extends BaseTest {
         _price = new Random().nextInt(100)+1;
         _quantity = new Random().nextInt(100)+1;
         _name = RandomStringUtils.randomAlphabetic(10);
+        _softAssert = new SoftAssert();
     }
 
     @Test
@@ -77,9 +80,11 @@ public class taskLecture_4 extends BaseTest {
 
         _productFormPage =_prodPage._openProductDetails(_name);
 
-        Assert.assertEquals(_productFormPage.getProductName(), _name);
-        Assert.assertEquals(_productFormPage.getProductQnt(), _quantity);
-        Assert.assertEquals(_productFormPage.getProductPrice(), _price);
+        _softAssert.assertEquals(_productFormPage.getProductName(), _name);
+        _softAssert.assertEquals(_productFormPage.getProductQnt(), _quantity);
+        _softAssert.assertEquals(_productFormPage.getProductPrice(), _price);
+        _softAssert.assertAll();
+
 
     }
 }
