@@ -22,7 +22,6 @@ public class BaseTest {
     protected NewProduct _productFormPage;
 
 
-
     @BeforeMethod
     public void Start(){
         //Create driver instance
